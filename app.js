@@ -102,6 +102,7 @@ const checkoutSummary = document.getElementById('checkoutSummary');
 const userLoginForm = document.getElementById('userLoginForm');
 const adminLoginForm = document.getElementById('adminLoginForm');
 const productForm = document.getElementById('productForm');
+const registerForm = document.getElementById('registerForm');
 const googleLoginBtn = document.getElementById('googleLoginBtn');
 const sessionLabel = document.getElementById('sessionLabel');
 
@@ -136,6 +137,19 @@ function getStoredProducts() {
 
 function saveStoredProducts(items) {
   localStorage.setItem('project7-products', JSON.stringify(items));
+}
+
+function getStoredUsers() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('project7-users') || 'null');
+    return Array.isArray(saved) ? saved : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveStoredUsers(users) {
+  localStorage.setItem('project7-users', JSON.stringify(users));
 }
 
 function getStoredOrders() {
@@ -377,7 +391,7 @@ function handleAdminLogin(event) {
   const username = document.getElementById('adminUsername').value.trim();
   const password = document.getElementById('adminPassword').value.trim();
 
-  if (username === 'admin' && password === 'admin123') {
+  if (username === 'itsar' && password === '123') {
     saveSession({ role: 'admin', name: 'Admin' });
     window.location.href = 'admin.html';
   } else {
@@ -389,13 +403,45 @@ function handleUserLogin(event) {
   event.preventDefault();
   const username = document.getElementById('userUsername').value.trim();
   const password = document.getElementById('userPassword').value.trim();
+  const users = getStoredUsers();
+  const existingUser = users.find((user) => user.username === username && user.password === password);
 
-  if (username && password) {
-    saveSession({ role: 'user', name: username || 'Pengguna' });
+  if (existingUser) {
+    saveSession({ role: 'user', name: username });
     window.location.href = 'store.html';
   } else {
-    showToast('Isi username dan password');
+    showToast('Login user gagal. Silakan daftar terlebih dahulu.');
   }
+}
+
+function handleUserRegister(event) {
+  event.preventDefault();
+  const username = document.getElementById('registerUsername').value.trim();
+  const password = document.getElementById('registerPassword').value.trim();
+  const confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
+
+  if (!username || !password) {
+    showToast('Isi username dan password terlebih dahulu');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    showToast('Password dan konfirmasi tidak cocok');
+    return;
+  }
+
+  const users = getStoredUsers();
+  if (users.some((user) => user.username === username)) {
+    showToast('Username sudah terpakai');
+    return;
+  }
+
+  users.push({ username, password });
+  saveStoredUsers(users);
+  showToast('Registrasi berhasil. Silakan login.');
+  setTimeout(() => {
+    window.location.href = 'login-user.html';
+  }, 700);
 }
 
 function handleGoogleLogin() {
@@ -552,6 +598,7 @@ function bindStorePageEvents() {
 function bindAuthPageEvents() {
   if (userLoginForm) userLoginForm.addEventListener('submit', handleUserLogin);
   if (adminLoginForm) adminLoginForm.addEventListener('submit', handleAdminLogin);
+  if (registerForm) registerForm.addEventListener('submit', handleUserRegister);
   if (googleLoginBtn) googleLoginBtn.addEventListener('click', handleGoogleLogin);
 }
 

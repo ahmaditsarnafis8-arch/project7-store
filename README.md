@@ -7,9 +7,9 @@ Website e-commerce sederhana dengan halaman awal login, login user/admin, opsi G
 2. Jalankan file [index.html](index.html) di browser, atau gunakan server statis sederhana.
 
 ## Login demo
-- User: user / user123
-- Admin: admin / admin123
-- Login Google: tombol yang tersedia di halaman awal dan halaman login user
+- User: daftar akun baru lewat halaman registrasi
+- Admin: login dengan username dan password tersimpan di aplikasi
+- Login Google: tombol yang tersedia di halaman awal dan halaman login user (demo lokal)
 
 ## Fitur
 - Halaman awal dengan pilihan login
