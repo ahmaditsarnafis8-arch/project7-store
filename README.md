@@ -30,3 +30,4 @@ Website e-commerce sederhana dengan halaman awal login, login user/admin, opsi G
 2. Aktifkan Authentication > Google.
 3. Isi nilai di [firebase-config.js](firebase-config.js) dengan konfigurasi project Anda.
 4. Setelah itu tombol login Google akan siap digunakan.
+
