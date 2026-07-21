@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store - Project 7</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="store.html">Project 7</a>
+        <nav class="nav-links">
+          <a href="#products">Produk</a>
+          <a href="#featured">Unggulan</a>
+          <a href="#about">Tentang</a>
+        </nav>
+        <div class="topbar-actions">
+          <span id="sessionLabel" class="helper-text"></span>
+          <button id="themeToggle" class="icon-button theme-toggle" aria-label="Ganti tema">🌙</button>
+          <button id="cartButton" class="cart-button">🛒 Keranjang <span id="cartCount">0</span></button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Belanja modern • pengiriman cepat</p>
+            <h1>Project 7 siap untuk pengalaman belanja premium.</h1>
+            <p>Temukan produk terbaik dengan pengalaman login yang lebih nyaman, akses admin, dan promosi menarik.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#products">Jelajahi produk</a>
+              <a class="btn secondary" href="index.html">Kembali ke login</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3>Kenapa pelanggan suka Project 7</h3>
+            <ul>
+              <li>Produk original dan terjamin</li>
+              <li>Support 24/7 siap membantu</li>
+              <li>Promo spesial tiap minggu</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="featured" class="feature-strip">
+          <div class="feature-card"><strong>4.9/5</strong><span>Rating pelanggan</span></div>
+          <div class="feature-card"><strong>50k+</strong><span>Pesanan berhasil</span></div>
+          <div class="feature-card"><strong>98%</strong><span>Pengiriman tepat waktu</span></div>
+        </section>
+
+        <section id="products" class="products-section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Produk unggulan</p>
+              <h2>Temukan yang paling cocok untuk Anda</h2>
+            </div>
+            <div class="section-meta">
+              <span id="resultsCount">0 produk</span>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <input id="searchInput" type="text" placeholder="Cari produk favorit..." />
+            <div class="chip-group">
+              <button class="chip active" data-category="Semua">Semua</button>
+              <button class="chip" data-category="Elektronik">Elektronik</button>
+              <button class="chip" data-category="Fashion">Fashion</button>
+              <button class="chip" data-category="Lifestyle">Lifestyle</button>
+            </div>
+          </div>
+
+          <div id="productGrid" class="product-grid"></div>
+        </section>
+      </main>
+
+      <aside id="cartPanel" class="cart-panel">
+        <div class="cart-header">
+          <h3>Keranjang Belanja</h3>
+          <button id="closeCart" class="icon-button">✕</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">Rp0</strong>
+          </div>
+          <button id="checkoutButton" class="btn primary full">Checkout</button>
+        </div>
+      </aside>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <div id="checkoutModal" class="modal hidden">
+      <div class="modal-card">
+        <h3>Pesanan berhasil dibuat 🎉</h3>
+        <p>Terima kasih sudah berbelanja di Project 7. Tim kami akan segera memproses pesanan Anda.</p>
+        <div class="promo-box">
+          <label for="promoCode">Kode promo</label>
+          <div class="promo-row">
+            <input id="promoCode" type="text" placeholder="Coba 1234" />
+            <button id="applyPromo" class="btn secondary">Terapkan</button>
+          </div>
+          <p class="promo-hint">Coba pakai <strong>1234</strong> untuk mendapat diskon 10%.</p>
+          <div id="checkoutSummary" class="checkout-summary"></div>
+        </div>
+        <button id="closeModal" class="btn primary">Tutup</button>
+      </div>
+    </div>
+
+    <div id="detailModal" class="modal hidden">
+      <div class="modal-card detail-modal">
+        <button id="closeDetailModal" class="icon-button detail-close">✕</button>
+        <div id="detailContent"></div>
+      </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

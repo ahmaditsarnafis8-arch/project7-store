@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Project 7</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html">Project 7 Admin</a>
+        <a class="btn secondary" href="index.html">Kembali ke toko</a>
+      </header>
+
+      <main class="admin-main">
+        <section class="admin-card">
+          <h2>Tambah Produk Baru</h2>
+          <form id="productForm" class="auth-form">
+            <label>
+              Nama Produk
+              <input id="productName" type="text" required />
+            </label>
+            <label>
+              Harga
+              <input id="productPrice" type="number" required />
+            </label>
+            <label>
+              Kategori
+              <input id="productCategory" type="text" placeholder="Elektronik" required />
+            </label>
+            <label>
+              Gambar (URL)
+              <input id="productImage" type="text" placeholder="https://..." />
+            </label>
+            <label>
+              Deskripsi
+              <textarea id="productDescription" rows="3" required></textarea>
+            </label>
+            <button class="btn primary full" type="submit">Simpan Produk</button>
+          </form>
+        </section>
+
+        <section class="admin-card">
+          <h2>Daftar Produk</h2>
+          <div id="adminProductList" class="admin-product-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
